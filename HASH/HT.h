@@ -18,11 +18,11 @@ private:
 
     // Hash function
     int hash(const string& key) {
-        int hashValue = 0;
+        int hash_value = 0;
         for (char c : key) {
-            hashValue += c;
+            hash_value += c;
         }
-        return hashValue % TABLE_SIZE;
+        return hash_value % TABLE_SIZE;
     }
 
 public:
@@ -34,7 +34,7 @@ public:
     }
 
     // Method for inserting an element into a hash table
-    void insert(const string& key, const string& value) {
+    void add(const string& key, const string& value) {
         int index = hash(key);
         HashNode* newNode = new HashNode(key, value);
 
@@ -68,14 +68,14 @@ public:
                     prev->next = current->next;
                 }
                 delete current;
-                cout << "Key '" << key << "' was removed successfully." << endl;
+                cout << "\nKey '" << key << "' was removed successfully." << endl;
                 return;
             }
             prev = current;
             current = current->next;
         }
 
-        cout << "Key '" << key << "' wasn't found." << endl;
+        cout << "\nKey '" << key << "' wasn't found." << endl;
     }
 
     // Method for getting value by key
@@ -85,7 +85,7 @@ public:
 
         while (current != nullptr) {
             if (current->key == key) {
-                return current->value;
+                return current->value + " index - " + to_string(index);
             }
             current = current->next;
         }
